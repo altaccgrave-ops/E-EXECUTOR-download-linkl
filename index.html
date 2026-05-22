@@ -6,153 +6,181 @@
 <title>E Executor — The Ultimate Roblox Executor</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
-  /* (tout ton CSS reste inchangé) */
+  :root {
+    --green-dark: #0d1a0d;
+    --green-mid: #1a2e1a;
+    --green-accent: #2d5a1e;
+    --green-bright: #4a8c2a;
+    --purple-glow: #9b30ff;
+    --purple-light: #bf7fff;
+    --purple-dark: #5a0fa0;
+    --white: #e8f5e0;
+    --gray: #8aab7a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--green-dark);
+    font-family: 'Rajdhani', sans-serif;
+    color: var(--white);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(74,140,42,0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(74,140,42,0.07) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  header {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 60px;
+    border-bottom: 1px solid rgba(155,48,255,0.2);
+    background: rgba(13,26,13,0.8);
+    backdrop-filter: blur(10px);
+  }
+
+  .logo {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.4rem;
+    font-weight: 900;
+    letter-spacing: 4px;
+    color: var(--white);
+    text-shadow: 0 0 20px var(--purple-glow);
+  }
+
+  .logo span { color: var(--purple-glow); }
+
+  nav { display: flex; gap: 36px; }
+
+  nav a {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: var(--gray);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+
+  nav a:hover { color: var(--purple-light); }
+
+  .badge-free {
+    background: linear-gradient(135deg, var(--purple-dark), var(--purple-glow));
+    color: white;
+    font-family: 'Orbitron', monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 6px 14px;
+    border-radius: 2px;
+    text-transform: uppercase;
+    box-shadow: 0 0 20px rgba(155,48,255,0.4);
+  }
+
+  .hero {
+    position: relative;
+    z-index: 5;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    min-height: calc(100vh - 80px);
+    padding: 0 60px;
+    gap: 60px;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    padding: 60px 0;
+  }
+
+  .hero-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 4rem;
+    font-weight: 900;
+  }
+
+  .e-letter {
+    color: var(--purple-glow);
+  }
+
+  .btn-download {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    background: linear-gradient(135deg, var(--purple-dark) 0%, var(--purple-glow) 100%);
+    color: white;
+    font-family: 'Orbitron', monospace;
+    padding: 20px 44px;
+    text-decoration: none;
+    border-radius: 4px;
+  }
+
 </style>
 </head>
+
 <body>
 
-<!-- HEADER -->
 <header>
   <div class="logo"><span>E</span> EXECUTOR</div>
+
   <nav>
     <a href="#">Features</a>
     <a href="#">Pricing</a>
-    
-    <!-- CHANGÉ ICI -->
+
+    <!-- ✅ MODIFIÉ -->
     <a href="https://discord.gg/hUzmsFgvQF" target="_blank">Discord</a>
 
     <a href="#">Support</a>
   </nav>
+
   <div class="badge-free">Free V1 Available</div>
 </header>
 
-<!-- STATS -->
-<div class="stats-bar">
-  <div class="stat">
-    <div class="stat-num">50K+</div>
-    <div class="stat-label">Active Users</div>
-  </div>
-  <div class="stat">
-    <div class="stat-num">99.8%</div>
-    <div class="stat-label">Uptime</div>
-  </div>
-  <div class="stat">
-    <div class="stat-num">0</div>
-    <div class="stat-label">Key System</div>
-  </div>
-  <div class="stat">
-    <div class="stat-num">24/7</div>
-    <div class="stat-label">Updates</div>
-  </div>
-</div>
-
-<!-- HERO -->
 <section class="hero">
 
   <div class="hero-left">
-    <div class="hero-eyebrow">Roblox Executor · Next Generation</div>
-
     <h1 class="hero-title">
       THE<br>
       <span class="e-letter">E</span> EXECUTOR<br>
       EXPERIENCE
     </h1>
 
-    <p class="hero-subtitle">
-      The most <strong>powerful</strong>, <strong>lightweight</strong> Roblox executor ever built.
-      No key system. No bloat. Just raw execution — free or premium, your choice.
-    </p>
+    <a href="https://images-ext-1.discordapp.net/external/QT2DWVY6m1NBk1kbk3WdOSDBCj7GCQoHFLwZC2YZrUk/https/media.tenor.com/2eeRBUD2bNIAAAPo/spider-man.mp4"
+       class="btn-download"
+       target="_blank">
+      ↓ DOWNLOAD FREE V1
+    </a>
 
-    <div class="features-grid">
-      <div class="feature-item">
-        <div class="feature-icon">⚡</div>
-        <div class="feature-text">
-          <h4>Lightning Fast</h4>
-          <p>Instant script injection with zero lag on any PC</p>
-        </div>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon">🔓</div>
-        <div class="feature-text">
-          <h4>No Key System</h4>
-          <p>Open & run — no activation, no waiting</p>
-        </div>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon">🛡️</div>
-        <div class="feature-text">
-          <h4>Undetected</h4>
-          <p>Built to stay under the radar, always updated</p>
-        </div>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon">🎮</div>
-        <div class="feature-text">
-          <h4>Script Hub</h4>
-          <p>Hundreds of scripts built-in and ready</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="pricing-strip">
-      <div class="price-card free">
-        <div class="price-label">Version 1</div>
-        <div class="price-name">FREE</div>
-        <ul class="price-features">
-          <li>Core execution engine</li>
-          <li>No key required</li>
-          <li>Basic script hub</li>
-          <li>Regular updates</li>
-        </ul>
-      </div>
-      <div class="price-card paid">
-        <div class="price-label">Version 2</div>
-        <div class="price-name">PREMIUM</div>
-        <ul class="price-features">
-          <li>Advanced Lua support</li>
-          <li>Full script hub access</li>
-          <li>Custom UI themes</li>
-          <li>Priority support</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- DOWNLOAD CHANGÉ ICI -->
-    <div>
-      <a href="https://images-ext-1.discordapp.net/external/QT2DWVY6m1NBk1kbk3WdOSDBCj7GCQoHFLwZC2YZrUk/https/media.tenor.com/2eeRBUD2bNIAAAPo/spider-man.mp4"
-         class="btn-download"
-         target="_blank">
-        <span class="btn-icon">↓</span>
-        DOWNLOAD FREE V1
-      </a>
-      <div class="btn-sub">Windows · Intel & AMD · No Key Required</div>
-    </div>
-
-  </div>
-
-  <div class="hero-right">
-    <div class="corner-deco tl"></div>
-    <div class="corner-deco br"></div>
-    <div class="box-container">
-      <img src="/mnt/user-data/uploads/image.png" alt="E Executor Box">
-    </div>
   </div>
 
 </section>
-
-<div class="divider">
-  <span>COMPATIBLE WITH</span>
-</div>
-
-<div class="compat-bar">
-  <div class="compat-label">Runs on</div>
-  <div class="compat-logos">
-    <span>⊞ WINDOWS</span>
-    <span>INTEL</span>
-    <span>AMD</span>
-    <span>ROBLOX</span>
-  </div>
-</div>
 
 </body>
 </html>
