@@ -28,6 +28,7 @@
     overflow-x: hidden;
   }
 
+  /* Noise overlay */
   body::before {
     content: '';
     position: fixed;
@@ -38,6 +39,7 @@
     opacity: 0.4;
   }
 
+  /* Grid background */
   body::after {
     content: '';
     position: fixed;
@@ -50,6 +52,7 @@
     z-index: 0;
   }
 
+  /* HEADER */
   header {
     position: relative;
     z-index: 10;
@@ -101,6 +104,7 @@
     box-shadow: 0 0 20px rgba(155,48,255,0.4);
   }
 
+  /* HERO */
   .hero {
     position: relative;
     z-index: 5;
@@ -112,23 +116,195 @@
     gap: 60px;
   }
 
+  /* LEFT SIDE */
   .hero-left {
     display: flex;
     flex-direction: column;
     gap: 28px;
     padding: 60px 0;
+    animation: fadeSlideLeft 0.9s ease forwards;
+  }
+
+  @keyframes fadeSlideLeft {
+    from { opacity: 0; transform: translateX(-40px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+
+  .hero-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 4px;
+    color: var(--purple-light);
+    text-transform: uppercase;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 30px;
+    height: 2px;
+    background: var(--purple-glow);
+    box-shadow: 0 0 8px var(--purple-glow);
   }
 
   .hero-title {
     font-family: 'Orbitron', monospace;
-    font-size: 4rem;
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
     font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -1px;
   }
 
-  .e-letter {
+  .hero-title .e-letter {
     color: var(--purple-glow);
+    text-shadow:
+      0 0 20px var(--purple-glow),
+      0 0 60px var(--purple-dark),
+      0 0 100px rgba(155,48,255,0.3);
+    display: inline-block;
+    animation: pulse-glow 2.5s ease-in-out infinite;
   }
 
+  @keyframes pulse-glow {
+    0%, 100% { text-shadow: 0 0 20px var(--purple-glow), 0 0 60px var(--purple-dark); }
+    50%       { text-shadow: 0 0 40px var(--purple-glow), 0 0 100px var(--purple-dark), 0 0 150px rgba(155,48,255,0.4); }
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: var(--gray);
+    line-height: 1.6;
+    max-width: 440px;
+  }
+
+  .hero-subtitle strong { color: var(--white); font-weight: 600; }
+
+  /* FEATURES */
+  .features-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .feature-item {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(155,48,255,0.15);
+    border-radius: 6px;
+    padding: 16px 18px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    transition: border-color 0.3s, background 0.3s;
+  }
+
+  .feature-item:hover {
+    border-color: rgba(155,48,255,0.5);
+    background: rgba(155,48,255,0.06);
+  }
+
+  .feature-icon {
+    font-size: 1.3rem;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .feature-text h4 {
+    font-family: 'Orbitron', monospace;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--white);
+    margin-bottom: 3px;
+  }
+
+  .feature-text p {
+    font-size: 0.82rem;
+    color: var(--gray);
+    font-weight: 400;
+    line-height: 1.4;
+  }
+
+  /* PRICING TAGS */
+  .pricing-strip {
+    display: flex;
+    gap: 14px;
+    align-items: stretch;
+  }
+
+  .price-card {
+    flex: 1;
+    border-radius: 8px;
+    padding: 18px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .price-card.free {
+    background: rgba(74,140,42,0.12);
+    border: 1px solid rgba(74,140,42,0.4);
+  }
+
+  .price-card.paid {
+    background: rgba(155,48,255,0.1);
+    border: 1px solid rgba(155,48,255,0.4);
+  }
+
+  .price-card.paid::before {
+    content: 'BEST';
+    position: absolute;
+    top: 10px; right: -14px;
+    background: var(--purple-glow);
+    color: white;
+    font-family: 'Orbitron', monospace;
+    font-size: 0.55rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 3px 20px;
+    transform: rotate(45deg);
+  }
+
+  .price-label {
+    font-family: 'Orbitron', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 3px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .price-card.free .price-label { color: var(--green-bright); }
+  .price-card.paid .price-label { color: var(--purple-light); }
+
+  .price-name {
+    font-family: 'Orbitron', monospace;
+    font-size: 1rem;
+    font-weight: 900;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+
+  .price-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .price-features li {
+    font-size: 0.8rem;
+    color: var(--gray);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .price-features li::before { content: '›'; color: var(--purple-glow); font-weight: bold; }
+
+  /* DOWNLOAD BUTTON */
   .btn-download {
     display: inline-flex;
     align-items: center;
@@ -137,50 +313,364 @@
     background: linear-gradient(135deg, var(--purple-dark) 0%, var(--purple-glow) 100%);
     color: white;
     font-family: 'Orbitron', monospace;
-    padding: 20px 44px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
     text-decoration: none;
+    padding: 20px 44px;
     border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.3s;
+    box-shadow:
+      0 0 30px rgba(155,48,255,0.5),
+      0 0 80px rgba(155,48,255,0.2),
+      inset 0 1px 0 rgba(255,255,255,0.15);
+    cursor: pointer;
+    border: none;
+    width: 100%;
+    margin-top: 4px;
   }
 
+  .btn-download::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent 30%, rgba(255,255,255,0.12));
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .btn-download:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 0 50px rgba(155,48,255,0.7),
+      0 0 100px rgba(155,48,255,0.3),
+      inset 0 1px 0 rgba(255,255,255,0.2);
+  }
+
+  .btn-download:hover::before { opacity: 1; }
+
+  .btn-download:active { transform: translateY(0); }
+
+  .btn-icon { font-size: 1.2rem; }
+
+  .btn-sub {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+    margin-top: 8px;
+  }
+
+  /* RIGHT SIDE */
+  .hero-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    animation: fadeSlideRight 0.9s ease 0.2s both;
+  }
+
+  @keyframes fadeSlideRight {
+    from { opacity: 0; transform: translateX(40px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+
+  /* Glow orb behind image */
+  .hero-right::before {
+    content: '';
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(155,48,255,0.25) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: orb-pulse 3s ease-in-out infinite;
+  }
+
+  @keyframes orb-pulse {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50%       { transform: scale(1.1); opacity: 1; }
+  }
+
+  .box-container {
+    position: relative;
+    z-index: 2;
+    animation: float 4s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(-2deg); }
+    50%       { transform: translateY(-18px) rotate(1deg); }
+  }
+
+  .box-container img {
+    width: 100%;
+    max-width: 420px;
+    filter:
+      drop-shadow(0 0 40px rgba(155,48,255,0.6))
+      drop-shadow(0 30px 60px rgba(0,0,0,0.8));
+  }
+
+  /* Corner decorations */
+  .corner-deco {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border-color: rgba(155,48,255,0.4);
+    border-style: solid;
+  }
+
+  .corner-deco.tl { top: 20px; left: 20px; border-width: 2px 0 0 2px; }
+  .corner-deco.br { bottom: 20px; right: 20px; border-width: 0 2px 2px 0; }
+
+  /* DIVIDER */
+  .divider {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 0 60px 40px;
+  }
+
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(155,48,255,0.3), transparent);
+  }
+
+  .divider span {
+    font-family: 'Orbitron', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 4px;
+    color: var(--purple-glow);
+    white-space: nowrap;
+  }
+
+  /* STATS BAR */
+  .stats-bar {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    border-top: 1px solid rgba(155,48,255,0.1);
+    border-bottom: 1px solid rgba(155,48,255,0.1);
+    background: rgba(155,48,255,0.04);
+    padding: 28px 60px;
+  }
+
+  .stat {
+    flex: 1;
+    text-align: center;
+    padding: 0 30px;
+    border-right: 1px solid rgba(155,48,255,0.1);
+  }
+
+  .stat:last-child { border-right: none; }
+
+  .stat-num {
+    font-family: 'Orbitron', monospace;
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--purple-light);
+    text-shadow: 0 0 20px rgba(155,48,255,0.5);
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: var(--gray);
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  /* COMPAT BAR */
+  .compat-bar {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    padding: 20px 60px;
+    background: rgba(13,26,13,0.6);
+    border-bottom: 1px solid rgba(155,48,255,0.08);
+  }
+
+  .compat-label {
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    color: var(--gray);
+    text-transform: uppercase;
+  }
+
+  .compat-logos {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    opacity: 0.6;
+  }
+
+  .compat-logos span {
+    font-family: 'Orbitron', monospace;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--white);
+  }
 </style>
 </head>
-
 <body>
 
+<!-- HEADER -->
 <header>
   <div class="logo"><span>E</span> EXECUTOR</div>
-
   <nav>
     <a href="#">Features</a>
     <a href="#">Pricing</a>
-
-    <!-- ✅ MODIFIÉ -->
-    <a href="https://discord.gg/hUzmsFgvQF" target="_blank">Discord</a>
-
+    <a href="#">Discord</a>
     <a href="#">Support</a>
   </nav>
-
   <div class="badge-free">Free V1 Available</div>
 </header>
 
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat">
+    <div class="stat-num">50K+</div>
+    <div class="stat-label">Active Users</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">99.8%</div>
+    <div class="stat-label">Uptime</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">0</div>
+    <div class="stat-label">Key System</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">24/7</div>
+    <div class="stat-label">Updates</div>
+  </div>
+</div>
+
+<!-- HERO -->
 <section class="hero">
 
+  <!-- LEFT CONTENT -->
   <div class="hero-left">
+    <div class="hero-eyebrow">Roblox Executor · Next Generation</div>
+
     <h1 class="hero-title">
       THE<br>
       <span class="e-letter">E</span> EXECUTOR<br>
       EXPERIENCE
     </h1>
 
-    <a href="https://images-ext-1.discordapp.net/external/QT2DWVY6m1NBk1kbk3WdOSDBCj7GCQoHFLwZC2YZrUk/https/media.tenor.com/2eeRBUD2bNIAAAPo/spider-man.mp4"
-       class="btn-download"
-       target="_blank">
-      ↓ DOWNLOAD FREE V1
-    </a>
+    <p class="hero-subtitle">
+      The most <strong>powerful</strong>, <strong>lightweight</strong> Roblox executor ever built.
+      No key system. No bloat. Just raw execution — free or premium, your choice.
+    </p>
+
+    <!-- FEATURES -->
+    <div class="features-grid">
+      <div class="feature-item">
+        <div class="feature-icon">⚡</div>
+        <div class="feature-text">
+          <h4>Lightning Fast</h4>
+          <p>Instant script injection with zero lag on any PC</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🔓</div>
+        <div class="feature-text">
+          <h4>No Key System</h4>
+          <p>Open & run — no activation, no waiting</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🛡️</div>
+        <div class="feature-text">
+          <h4>Undetected</h4>
+          <p>Built to stay under the radar, always updated</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon">🎮</div>
+        <div class="feature-text">
+          <h4>Script Hub</h4>
+          <p>Hundreds of scripts built-in and ready</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRICING -->
+    <div class="pricing-strip">
+      <div class="price-card free">
+        <div class="price-label">Version 1</div>
+        <div class="price-name">FREE</div>
+        <ul class="price-features">
+          <li>Core execution engine</li>
+          <li>No key required</li>
+          <li>Basic script hub</li>
+          <li>Regular updates</li>
+        </ul>
+      </div>
+      <div class="price-card paid">
+        <div class="price-label">Version 2</div>
+        <div class="price-name">PREMIUM</div>
+        <ul class="price-features">
+          <li>Advanced Lua support</li>
+          <li>Full script hub access</li>
+          <li>Custom UI themes</li>
+          <li>Priority support</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- DOWNLOAD -->
+    <div>
+      <a href="#" class="btn-download">
+        <span class="btn-icon">↓</span>
+        DOWNLOAD FREE V1
+      </a>
+      <div class="btn-sub">Windows · Intel & AMD · No Key Required</div>
+    </div>
 
   </div>
 
+  <!-- RIGHT IMAGE -->
+  <div class="hero-right">
+    <div class="corner-deco tl"></div>
+    <div class="corner-deco br"></div>
+    <div class="box-container">
+      <img src="/mnt/user-data/uploads/image.png" alt="E Executor Box">
+    </div>
+  </div>
+
 </section>
+
+<!-- DIVIDER -->
+<div class="divider">
+  <span>COMPATIBLE WITH</span>
+</div>
+
+<!-- COMPAT BAR -->
+<div class="compat-bar">
+  <div class="compat-label">Runs on</div>
+  <div class="compat-logos">
+    <span>⊞ WINDOWS</span>
+    <span>INTEL</span>
+    <span>AMD</span>
+    <span>ROBLOX</span>
+  </div>
+</div>
 
 </body>
 </html>
